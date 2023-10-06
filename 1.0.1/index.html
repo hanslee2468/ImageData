@@ -109,6 +109,9 @@
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
+
+	    window.unityInstance = unityInstance;     <----- Add here
+		  
             unityInstance.SetFullscreen(1);
           };
         }).catch((message) => {
@@ -116,25 +119,6 @@
         });
       };
       document.body.appendChild(script);
-
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-
-	    window.unityInstance = unityInstance;     <----- Add here
-          
-	    loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
-        });
-      }; 
     </script>
   </body>
 </html>
